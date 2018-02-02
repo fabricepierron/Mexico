@@ -1,0 +1,51 @@
+<html>
+<head>
+<?php
+require ("connexion_bd.php")
+?>
+<title> Ajouter un utilisateur </title>
+<link rel="stylesheet" type="text/css" href="css_formulaire.php" />
+</head>
+<body>
+
+<form method="post" action="ajouter_user.php">
+<center>
+<p>
+<label for="nom_utilisateur"> Nom du nouvel utilisateur : </label> 
+<input type="text" name="nom_utilisateur" id="nom_utilisateur" placeholder="Ex : Dupont" size="30"  maxlength="128" required />
+<br/>
+ <br />
+ <label for="prenom_utilisateur">Prenom du nouvel utilisateur :</label>
+ <input type="text" name="prenom_utilisateur" id="prenom_utilisateur" placeholder="Ex : Paul" size="30" maxlength="128" required />
+ <br/>
+  <br/>
+   <p>
+  <label for="telephone_utilisateur">Telephone :</label>
+ <input type="text" name="telephone_utilisateur" id="telephone_utilisateur" placeholder="Ex : +52(55)5062-2243"  size="20" maxlength="300" /> 
+ <br/ >
+ <br/ >
+ <label for="email_utilisateur">Email de l'utilisateur :</label>
+ <input type="email" name="email_utilisateur" id="email_utilisateur" placeholder="Ex : dupont.paul@gmail.com"  size="30" maxlength="30" /> 
+ <br/ >
+ <br/ >
+ <label for="adresse_utilisateur">Adresse :</label>
+ <input type="text" name="adresse_utilisateur" id="adresse_utilisateur" placeholder="Ex : 339 Campos Eliseos, Col. Polanco
+11560 Mexico D.F."  size="30" maxlength="300" /> 
+<br />
+<br />
+ <label for="pseudo">Pseudo de l'utilisateur :</label>
+ <input type="text" name="pseudo" id="pseudo"   size="30" maxlength="128" required /> 
+ <br />
+ <br />
+  <label for="mdp">Mot de passe :</label>
+ <input type="password" name="mdp" id="mdp"   size="30" maxlength="1000" required /> 
+ <br />
+ <br />
+  
+<input type="submit" name="envoyer" value="Envoyer" />  
+  
+</p>
+</center>
+</form>
+</body>
+</html>
