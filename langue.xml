@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+<title>
+
+</title>
+
+<onglet_1>
+<fr>Accueil</fr>
+<es>Bienvenida</es>
+</onglet_1>
+
+<onglet_2>
+<fr>Photojournalistes</fr>
+<es>Reporteros gráficos</es>
+</onglet_2>
+
+<onglet_3>
+<fr>Galerie</fr>
+<es>Galería</es>
+</onglet_3>
+
+<onglet_4>
+<fr>Contact</fr>
+<es>Contactar</es>
+</onglet_4>
+
+<onglet_5>
+<fr>Connexion</fr>
+<es>Conexión</es>
+</onglet_5>
+
+</root>
