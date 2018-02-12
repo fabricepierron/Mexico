@@ -10,7 +10,13 @@
 <center>
 <body>
 <div id="main">
-	<h1>MEXICO - 1985</h1></br><hr>  
+<div id="cont_2">
+	<h2><?php echo $xml->photoj->$lang;?></h2><hr>  
+	<h3><strong>Elsa Medina</strong></h3></br>
+	<p id="p_al"><?php echo $xml->p_photoj_1_1->$lang;?></p></br>
+	<p id="p_al"><?php echo $xml->p_photoj_1_2->$lang;?></p></br>
+	<p id="p_al"><?php echo $xml->p_photoj_1_3->$lang;?></p></br>
+</div>
 </div>
 </center>
 </body>

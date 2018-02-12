@@ -13,7 +13,9 @@
     <a href="?lang=fr"><img id="fl" width="30" height="20" src="ico/fr.svg"></img></a>
 <center>
 <div id="main">
-	<h1>MEXICO - 1985</h1></br><hr>  
+	<h1>MEXICO - 1985</h1></br><hr></br> 
+	<br><p id="p_al"><?php echo $xml->p_accueil1->$lang;?><p>
+	<br><p id="p_al"><?php echo $xml->p_accueil2->$lang;?><p>
 </div>
 </center>
 </body>

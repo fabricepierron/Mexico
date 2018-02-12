@@ -1,4 +1,6 @@
-<?php
+ 
+ 
+ <?php
 
 session_start();
 $lang = isset($_GET['lang']) ? $_GET['lang'] : substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
@@ -101,7 +103,9 @@ body {
   <a id="onglet" href="?page=photoj"><?php echo $xml->onglet_2->$lang;?></a>
   <a id="onglet" href="?page=galerie"><?php echo $xml->onglet_3->$lang;?></a>
   <a id="onglet" href="?page=contact"><?php echo $xml->onglet_4->$lang;?></a>
-  <a id="onglet"href="?page=connexion_prive"><?php echo $xml->onglet_5->$lang;?></a>
+  <form action="deconnexion.php" method="post" class="form" role="form">
+		<button type="submit" class="btn_menu2"><?php echo $xml->onglet_6->$lang;?></button>	
+  </form>
 </div>
 
 <!-- Use any element to open the sidenav -->
@@ -132,3 +136,22 @@ function closeNav() {
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 </body>
 </html>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+		

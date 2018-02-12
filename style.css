@@ -23,6 +23,11 @@ font-size:120px;
 font-family:'CGPfont';
 letter-spacing: 20px;
 }
+h2 {
+font-size:80px;
+font-family:'CGPfont';
+letter-spacing: 5px;
+}
 
 hr {
     margin-left: 10% !important;
@@ -95,6 +100,47 @@ border-radius: 15px;
   color:#e1e4ea;
   transition: margin-left .5s;
   height: 30px;
+}
+
+#p_al {
+  text-align: justify;
+}
+p {
+  transition: margin-left .5s;
+	]
+
+.form-control {
+	width: 20%;
+}
+.form {
+	margin-top : 20%;
+}
+.btn-primary {
+	max-width: 15%;
+}
+
+.btn_menu2 {
+	background-color : #111;
+	border : none;
+	padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+.btn_menu2:hover {
+	transition: 0.3s;
+	color: #f1f1f1;
+	text-decoration: underline;
+	touch-action: manipulation;
+	cursor:pointer;
+}
+
+#cont_2 {
+	margin-left: 5%;
+	margin-right: 5%;
+	font-size: 20px;
 }
 
 
