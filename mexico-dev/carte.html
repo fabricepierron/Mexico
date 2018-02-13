@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Interactive Map of Mexico 1985's Earthquake Pictures</title>
+
+<link rel="stylesheet" type="text/css" href="leaflet-1.3.1/leaflet.css"/>
+<script src="leaflet-1.3.1/leaflet.js"></script>
+<!--Leaflet Default Extent-->
+<script src="leaflet-1.3.1/leaflet.defaultextent.js"></script>
+<link rel="stylesheet" type="text/css" href="leaflet-1.3.1/leaflet.defaultextent.css"/>
+<!--Light Box 3-->
+<link href="add/lightbox.css" rel="stylesheet">
+
+<!-- Magnific Popup core CSS file -->
+<!--link rel="stylesheet" href="add/magnific-popup.css"-->
+<!--GeoJSON data-->
+<script src="getGeoJSON.php"></script>
+<!--Leaflet Sidebar-->
+<link href="leaflet-1.3.1/L.Control.Sidebar.css" rel="stylesheet">
+<script src="leaflet-1.3.1/L.Control.Sidebar.js"></script>
+</head>
+<body>
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+  .popup {
+  text-align:center;
+  }
+
+.popup .slideshow img {
+  width:100%;
+  }
+
+.popup .cycle a.info { float:right; padding:2px; }
+
+#pic{border-radius:8px;
+}
+
+.lb-caption{
+font-family:Arial;
+font-size:1.5rem;
+}
+
+</style>
+<div id='sidebar' style="color:white;"></div>
+<div id="map"></div>
+<script src="add/jquery-3.3.1.min.js"></script>
+<!--script src="add/jquery.magnific-popup.min.js"></script-->
+<script src="add/lightbox.js"></script>
+<script>
+//Map & BaseMaps
+
+var myaccessToken = 'pk.eyJ1IjoiZXVkZXN5YXdvZyIsImEiOiJjaXZkbzF2aXQwMTM4Mm9tcWx1ZGUyZDI4In0.7Whc-Bs5vJfIC-VlMRiNyQ'
+
+var map = L.map('map', {
+			maxZoom: 18,
+			minZoom: 10,
+			maxBounds: [//south west
+						[19, -100],
+						//north east
+						[20, -98]],
+			}).setView([19.4325, -99.13167], 13,{defaultExtentControl: true});
+
+
+var osm = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: myaccessToken
+}).addTo(map);
+
+var mexico = L.geoJSON(photos,{
+		style:function(feature) {
+				switch (feature.properties.precisionloc) {
+				case '0': return {fillColor: "#ff6700"};
+				case '1': return {fillColor: "#00a75f"};
+				  }
+				},
+		pointToLayer: function(feature, latlng) { 
+							return L.circleMarker(latlng,{
+									radius : 9,
+									weight: 3,
+									color : "rgba(10,10,10,0.7)",
+									opacity:1,
+									fillOpacity: 0.8});}, 
+		onEachFeature:onEachFeature
+						}).addTo(map);
+
+function onEachFeature(feature, layer) {
+
+	slideshowContent = '<div class="image">' +
+                              '<a href="'+feature.properties.repertoire+'/'+feature.properties.nom_photo+'" data-lightbox="image" data-title="'+feature.properties.nom_photo.substr(0, feature.properties.nom_photo.length-4)+'"><img id="pic" src="'+feature.properties.repertoire+'/thumb_200/'+
+							  feature.properties.nom_photo.substr(0, feature.properties.nom_photo.length-4)+'_200.jpg" alt="'+ feature.properties.nom_photo.substr(0, feature.properties.nom_photo.length-4) +'" />'+
+                            '</a></div>';
+							
+	var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
+                            '<h2>' + feature.properties.nom_photo.substr(0, feature.properties.nom_photo.length-4) + '</h2>' +
+                            '<div class="slideshow">' +
+                                slideshowContent +
+                            '</div>' +
+							'<div class="metadata">' +
+								'<h3> Auteur : '+feature.properties.photojournaliste+'</h3><br>' +
+                                '<p>'+feature.properties.description_fr+'</p><br>' +
+								'<p>'+feature.properties.description_es+'</p><br>' +
+								'<p>'+feature.properties.adresse_fr+'</p><br>' +
+								'<p>'+feature.properties.adresse_es+'</p><br>' +
+								'<p>'+feature.properties.date_photo+'</p><br>' +
+								'<p>'+feature.properties.precisionloc+'</p><br>' +
+								'<a href="'+feature.properties.street_view+'" target="_blank">Google Street View</a><br>' +
+                            '</div>'+
+                        '</div>';
+						
+	
+	/*layer.bindPopup(popupContent,{
+        minWidth: 250
+    });*/
+	
+	/*layer.on("mouseover", function () {
+		layer.openPopup();
+		});
+	layer.on("mouseout", function () {
+		layer.closePopup();
+		});
+	layer.on("click", function(e){
+		openSidebar(e) 
+		});*/
+	
+	layer.on("click", function(e){
+	if (e.target.feature.properties.precisionloc==0){
+		$("#sidebar").css("background","rgba(10,0,0,.7)");}
+	else if (e.target.feature.properties.precisionloc==1){
+		$("#sidebar").css("background","rgba(0,10,0,.7)");}
+	$('#sidebar').html(popupContent);
+	
+		var sidebar = L.control.sidebar('sidebar', {
+            position: 'right',
+			closeButton: true
+        });
+	
+		
+    map.addControl(sidebar);
+	
+	setTimeout(function () {
+            sidebar.show();
+        }, 500);
+		
+	map.on('click', function () {
+            sidebar.hide();
+        });
+		});
+	};
+	
+/*function openSidebar(selection) {
+    sidebar.toggle();
+    sidebar.html('<h2> this is ' + selection.feature.properties.nom_photo + '</h2>');
+
+}*/
+//$('#sidebar').html("<h2>"+feature.properties.nom_photo.substr(0, feature.properties.nom_photo.length-4)+"</h2>");
+/*$('#map').on('click','.info',function(){
+	var sidebar = L.control.sidebar('sidebar', {
+            closeButton: true,
+            position: 'right'
+        });
+		
+    map.addControl(sidebar);
+	setTimeout(function () {
+            sidebar.show();
+        }, 500);
+	map.on('click', function () {
+            sidebar.hide();
+        });
+});*/
+
+
+/*
+'<div><p><b>'+ feature.properties.nom_photo + '</b></p>'
+					+ '<br> <a href="'++'" data-lightbox="image-1"> <img class = "photo" src="'+ feature.properties.repertoire +'/'+feature.properties.nom_photo +'" alt="'+feature.properties.nom_photo
+					+'" style="max-width:150px;"></a></div>'
+
+('<p> <b>Nom</b> : <b>'+ feature.properties.nom + '</b></p>' + ' <p><b>Description</b> : '+ feature.properties.description +'</p>'
+					+ '<br> <div><img class = "photo" src="http://193.55.175.126/sigmaetu1/projet_web/Photos/'+feature.properties.photo+'" alt="'+feature.properties.nom
+					+'" style="max-width:200px;"></div>')*/
+
+/*chargerGeoJSON();
+
+
+
+
+function chargerGeoJSON(){
+	
+	$.getJSON("getJSON.php",function(data) {
+	var pj_array =[];
+	
+        $.each(data, function(id,pj) {
+            pj_array.push(pj.photojournaliste);
+			});
+    
+	var overlayMaps = '{';
+	
+	for (var i=0;i < pj_array.length;i++){
+		
+		var mexico = L.geoJSON(photos,{ 
+		pointToLayer: function(feature, latlng) { 
+							return L.circleMarker(latlng,{
+									radius : 8,
+									color : 'white',
+									fillOpacity: 0.8,
+									fillColor: 'rgb(165,10,20)'});}, 
+		filter : function (feature,layer) {
+					if (feature.properties.photojournaliste == pj_array[i]) // Filter on var GeoJSON 
+						return true; }
+						}).addTo(map);
+		
+		overlayMaps.concat(pj_array[i]," : ",mexico) ;
+		console.log(overlayMaps);
+	}
+	
+	overlayMaps.concat('}');
+	console.log(overlayMaps);
+
+L.control.layers(overlayMaps).addTo(map);
+});	
+};*/
+
+// Call of onEachFeature function
+/*function onEachFeature (feature,layer) {
+	alert("clicked");
+		};*/
+		
+L.control.defaultExtent().addTo(map);
+</script>
+</body>
+</html>

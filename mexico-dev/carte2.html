@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Interactive Map of Mexico 1985's Earthquake Pictures</title>
+
+<link rel="stylesheet" type="text/css" href="leaflet-1.3.1/leaflet.css"/>
+<script src="leaflet-1.3.1/leaflet.js"></script>
+<!--Leaflet Default Extent-->
+<script src="leaflet-1.3.1/leaflet.defaultextent.js"></script>
+<link rel="stylesheet" type="text/css" href="leaflet-1.3.1/leaflet.defaultextent.css"/>
+<!--Light Box 3-->
+<link href="add/lightbox.css" rel="stylesheet">
+
+<!-- Magnific Popup core CSS file -->
+<!--link rel="stylesheet" href="add/magnific-popup.css"-->
+<!--GeoJSON data-->
+<script src="getGeoJSON.php"></script>
+<!--Leaflet Sidebar-->
+<link href="leaflet-1.3.1/L.Control.Sidebar.css" rel="stylesheet">
+<script src="leaflet-1.3.1/L.Control.Sidebar.js"></script>
+</head>
+<body>
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+  .popup {
+  text-align:center;
+  }
+
+.popup .slideshow img {
+  width:100%;
+  }
+
+.popup .cycle a.info { float:right; padding:2px; }
+
+#pic{border-radius:8px;
+}
+
+.lb-caption{
+font-family:Arial;
+font-size:1.5rem;
+}
+
+</style>
+<div id='sidebar'></div>
+<div id="map"></div>
+<script src="add/jquery-3.3.1.min.js"></script>
+<!--script src="add/jquery.magnific-popup.min.js"></script-->
+<script src="add/lightbox.js"></script>
+<script>
+//Map & BaseMaps
+
+var myaccessToken = 'pk.eyJ1IjoiZXVkZXN5YXdvZyIsImEiOiJjaXZkbzF2aXQwMTM4Mm9tcWx1ZGUyZDI4In0.7Whc-Bs5vJfIC-VlMRiNyQ'
+
+var map = L.map('map', {
+			maxZoom: 18,
+			minZoom: 10,
+			maxBounds: [//south west
+						[19, -100],
+						//north east
+						[20, -98]],
+			}).setView([19.4325, -99.13167], 13,{defaultExtentControl: true});
+
+
+var osm = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: myaccessToken
+}).addTo(map);
+
+var mexico = L.geoJSON(photos,{
+		pointToLayer: function(feature, latlng) { 
+							return L.circleMarker(latlng,{
+									radius : 8,
+									weight: 2,
+									color : "#000",
+									fillColor : "#00a75f",
+									opacity:1,
+									fillOpacity: 0.8});}, 
+		onEachFeature:onEachFeature
+						}).addTo(map);
+
+function onEachFeature(feature, layer) {
+	
+	slideshowContent = '<div class="image">' +
+                              '<a href="'+feature.properties.repertoire+'/'+feature.properties.nom_photo+'" data-lightbox="image" data-title="'+feature.properties.nom_photo.substr(0, feature.properties.nom_photo.length-4)+'"><img id="pic" src="'+feature.properties.repertoire+'/thumb_200/'+
+							  feature.properties.nom_photo.substr(0, feature.properties.nom_photo.length-4)+'_200.jpg" alt="'+ feature.properties.nom_photo.substr(0, feature.properties.nom_photo.length-4) +'" />'+
+                            '</a></div>';
+							
+	var popupContent =  '<div id="' + feature.properties.id + '" class="popup">' +
+                            '<h2>' + feature.properties.nom_photo.substr(0, feature.properties.nom_photo.length-4) + '</h2>' +
+                            '<div class="slideshow">' +
+                                slideshowContent +
+                            '</div>' +
+							'<div class="cycle">' +
+                                '<a href="#" class="info">Plus d\'informations &#9432;</a> <br>' +
+                            '</div>'+
+                        '</div>';
+						
+	
+	layer.bindPopup(popupContent,{
+        minWidth: 250
+    })};
+	
+L.control.defaultExtent().addTo(map);
+</script>
+</body>
+</html>

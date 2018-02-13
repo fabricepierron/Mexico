@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Magnific Popup Demo</title>
+<link rel="stylesheet" href="add/magnific-popup.css">
+</head>
+<body>
+
+<a class="test-popup-link" href="photos/1-SCOP - Vue arrière.jpg"><img src="photos/1-SCOP - Vue arrière.jpg" style="max-width:250px;" /></a>
+<div class="parent-container">
+  <a href="photos/1-SCOP - Vue arrière.jpg ">Open popup 1</a>
+  <a href="photos/2-SCOP - Vue latérale.jpg ">Open popup 2</a>
+  <a href="photos/3-SCOP - Vue frontale générale.jpg" >Open popup 3</a>
+</div>
+<script src="add/jquery-3.3.1.min.js"></script>
+<script src="add/jquery.magnific-popup.min.js"></script>
+<script>
+$(document).ready(function() {
+  $('.test-popup-link').magnificPopup({
+  type:'image'
+  
+  //other options
+  });
+  
+  $('.parent-container').magnificPopup({
+  delegate: 'a', // child items selector, by clicking on it popup will open
+  type: 'image',
+  gallery: {enabled: true}
+  // other options
+  });
+  
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>Mexico 1985'Photos Earthquake Interactive Map</title>
+<style>
+  body { margin:0; padding:0; }
+  #map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+<link rel="stylesheet" type="text/css" href="leaflet-1.3.1/leaflet.css"/>
+<script src="leaflet-1.3.1/leaflet.js"></script>
+</head>
+<body>
+<div id="map"></div>
+<script>
+//Map & BaseMaps
+var myaccessToken = 'pk.eyJ1IjoiZXVkZXN5YXdvZyIsImEiOiJjaXZkbzF2aXQwMTM4Mm9tcWx1ZGUyZDI4In0.7Whc-Bs5vJfIC-VlMRiNyQ'
+
+var CartoLight = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    maxZoom: 18
+});
+
+var CartoDark = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+    maxZoom: 18
+});
+
+var MapboxStreets = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: myaccessToken
+});
+
+var MapboxDark = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.dark',
+    accessToken: myaccessToken
+});
+
+var MapboxLight = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.light',
+    accessToken: myaccessToken
+});
+
+var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+});
+
+var OSM_BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png', {
+	maxZoom: 18,
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+});
+
+var map = L.map('map',{
+    center: [19.4325, -99.13167],
+    zoom: 13,
+    layers: [Esri_WorldStreetMap]
+});
+
+//Layer Switch
+var baseMaps = {
+		"Mapbox Streets":MapboxStreets,
+		"Mapbox Light": MapboxLight,
+		"Mapbox Dark": MapboxDark,
+		"CartoDB Light":CartoLight,
+		"CartoDB Dark":CartoDark,
+		"Esri WorldStreetMap":Esri_WorldStreetMap,
+		"OSM BlackAndWhite":OSM_BlackAndWhite
+};
+
+L.control.layers(baseMaps).addTo(map);
+</script>
+</body>
+</html>
