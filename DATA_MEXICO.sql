@@ -1,3 +1,24 @@
+INSERT INTO `photojournaliste` (`ID_PJ`, `NOM_PJ`, `PRENOM_PJ`, `DESCRIPTION_PJ_FR`, `DESCRIPTION_PJ_ES`) VALUES
+(1, 'Medina', 'Elsa', '<p> Elsa Medina est une photographe mexicaine résidant dans la ville de Mexico. Elle a commencé la photographie au début des années 1980 après une formation à l’Université de San Diego puis à la UNAM (Université Nationale Autonome du Mexique). Photojournaliste pendant quinze ans -de 1986 à la fin des années 1990- à La Jornada, journal de référence de la gauche mexicaine, elle s’est maintenant tournée vers une photographie plus personnelle. Plus d\'informations <a href="http://blogs.univ-tlse2.fr/miroir/2017/10/20/elsa-medina-castro-un-regard-photographique/">ici</a></p>', '<p> Elsa Medina es una fotógrafa mexicana que vive en la Ciudad de México. Comenzó a fotografiar a principios de la década de 1980 después de capacitarse en la Universidad de San Diego y luego en la UNAM (Universidad Nacional Autónoma de México). Periodista fotográfico durante quince años -desde 1986 hasta finales de los 90- en La Jornada, el diario de referencia de la izquierda mexicana, ahora ha recurrido a una fotografía más personal. Más información <a href="http://blogs.univ-tlse2.fr/miroir/2017/10/20/elsa-medina-castro-un-regard-photographique/">aquí</a></p>');
+
+INSERT INTO `utilisateur` (`ID_USER`, `PSEUDO`, `MDP`, `EMAIL_USER`) VALUES
+(1, 'MarionGautreau', 'Mexico-1985', 'marion.gautreau@yahoo.com');
+
+INSERT INTO `sujet` (`ID_SUJET`, `LIBELLE_FR`, `LIBELLE_ES`) VALUES
+(1, 'Batiment(SCOP)', 'Edificio(SCOP)'),
+(2, '19 septembre 1985', '19 de septiembre de 1985'),
+(3, '20 septembre 1985', '20 de septiembre de 1985'),
+(4, 'Sauveteurs', 'Los equipos de rescate'),
+(5, 'Vie quotidienne', 'Vida cotidiana'),
+(6, 'Bâtiments détruits', 'Edificios destruidos'),
+(7, 'Groupes de personnes', 'Grupos de personas'),
+(8, 'Personne seule', 'Persona soltera'),
+(9, 'Drapeau', 'Bandera'),
+(10, 'Fontaine', 'Fuente'),
+(11, 'Pub Mabe', 'Pub Mabe'),
+(12, 'Edifice Canada', 'Edificio de Canadá'),
+(13, 'Hotel Regis', 'Hotel Regis');
+
 INSERT INTO `photo` (`ID_PHOTO`, `ID_PJ`, `REPERTOIRE`, `NOM_PHOTO`, `LONGITUDE`, `LATITUDE`, `DESCRIPTION_FR`, `DESCRIPTION_ES`, `ADRESSE_FR`, `ADRESSE_ES`, `PRECISIONLOC`, `ORDRE`, `DATE_PHOTO`, `STREET_VIEW`, `ANGLE_VUE`) VALUES
 (1, 1, 'photos', 'Edificio SCOP.jpg', '-99.1461960', '19.3941760', 'Destruction de la SCOP, suite au séisme du 19 septembre 1985', 'Destrucción de SCOP tras el terremoto del 19 de septiembre de 1985', 'Xola, Narvarte Poniente, 03020 Ciudad de México, CDMX, Mexique', 'Xola, Narvarte Poniente, 03020 Ciudad de México, CDMX, Mexique', 1, 1, '1985-09-19', 'https://www.google.com/maps/@19.3943,-99.1461436,3a,75y,292.73h,103.16t/data=!3m6!1e1!3m4!1spKkcQppwB85gGnytPIfKGw!2e0!7i13312!8i6656?hl=es', NULL),
 (2, 1, 'photos', 'Edificio SCOP - Grupo de 3 personas.JPG', '-99.1461960', '19.3941760', 'Groupe de 3 personnes victimes du séisme de 1985, à proximité de la SCOP.  ', 'Grupo de 3 personas víctimas del terremoto de 1985, cerca del SCOP', 'Xola, Narvarte Poniente, 03020 Ciudad de México, CDMX, Mexique', 'Xola, Narvarte Poniente, 03020 Ciudad de México, CDMX, Mexique', 1, 2, '1985-09-19', 'https://www.google.com/maps/@19.3943,-99.1461436,3a,75y,292.73h,103.16t/data=!3m6!1e1!3m4!1spKkcQppwB85gGnytPIfKGw!2e0!7i13312!8i6656?hl=es', NULL),
@@ -27,27 +48,6 @@ INSERT INTO `photo` (`ID_PHOTO`, `ID_PJ`, `REPERTOIRE`, `NOM_PHOTO`, `LONGITUDE`
 (26, 1, 'photos', 'Hotel Regis - 3 personajes en primer plano.jpg', '-99.1473945', '19.4351532', '3 personnes constastent les dégâts après le séisme. Ici, on peut observe l\'Hôtel Regis totalement détruit. ', '3 personas registran el daño después del terremoto. Aquí podemos ver el Hotel Regis totalmente destruido. ', 'A l’angle de la Avenida Juarez et de la rue Doctor Mora', 'En la esquina de Avenida Juárez y Doctor Mora Street', 0, NULL, '1985-09-19', 'https://www.google.com/maps/@19.4351532,-99.1473945,3a,75y,279.66h,99.94t/data=!3m6!1e1!3m4!1sQXAut73fBaHoZTrvjvOpSw!2e0!7i13312!8i6656?hl=es', NULL),
 (27, 1, 'photos', 'Hotel Regis (Zoom).jpg', '-99.1472702', '19.4350575', 'Zoom sur l\'hotel Régis totalement détruit après le tremblement de terre. ', 'Zoom en el hotel Régis totalmente destruido después del terremoto.', 'A l’angle de la Avenida Juarez et de la rue Doctor Mora', 'En la esquina de Avenida Juárez y Doctor Mora Street', 0, NULL, '1985-09-19', 'https://www.google.com/maps/@19.4350575,-99.1472702,3a,89.9y,351.71h,98.52t/data=!3m6!1e1!3m4!1sCsrG59PnCmL7sbC6psLUJQ!2e0!7i13312!8i6656?hl=es', NULL),
 (28, 1, 'photos', 'Copicentro - Vista general.jpg', '-99.1397115', '19.4320435', 'Vue sur l\'imprimerie détruite après le séisme. ', 'Vista de la imprenta destruida después del terremoto.', 'Rue Venustiano Carranza n°23. A l’angle de la rue Gante', 'Calle Venustiano Carranza n ° 23. En la esquina de Gante Street', 0, NULL, '1985-09-19', 'https://www.google.fr/maps/@19.4320435,-99.1397115,2a,75y,168.25h,81.53t/data=!3m6!1e1!3m4!1sgXWHXJsBjXKo6vvaFRtLkA!2e0!7i13312!8i6656', NULL);
-
-INSERT INTO `photojournaliste` (`ID_PJ`, `NOM_PJ`, `PRENOM_PJ`, `DESCRIPTION_PJ_FR`, `DESCRIPTION_PJ_ES`) VALUES
-(1, 'Medina', 'Elsa', '<p> Elsa Medina est une photographe mexicaine résidant dans la ville de Mexico. Elle a commencé la photographie au début des années 1980 après une formation à l’Université de San Diego puis à la UNAM (Université Nationale Autonome du Mexique). Photojournaliste pendant quinze ans -de 1986 à la fin des années 1990- à La Jornada, journal de référence de la gauche mexicaine, elle s’est maintenant tournée vers une photographie plus personnelle. Plus d\'informations <a href="http://blogs.univ-tlse2.fr/miroir/2017/10/20/elsa-medina-castro-un-regard-photographique/">ici</a></p>', '<p> Elsa Medina es una fotógrafa mexicana que vive en la Ciudad de México. Comenzó a fotografiar a principios de la década de 1980 después de capacitarse en la Universidad de San Diego y luego en la UNAM (Universidad Nacional Autónoma de México). Periodista fotográfico durante quince años -desde 1986 hasta finales de los 90- en La Jornada, el diario de referencia de la izquierda mexicana, ahora ha recurrido a una fotografía más personal. Más información <a href="http://blogs.univ-tlse2.fr/miroir/2017/10/20/elsa-medina-castro-un-regard-photographique/">aquí</a></p>');
-
-INSERT INTO `utilisateur` (`ID_USER`, `PSEUDO`, `MDP`, `EMAIL_USER`) VALUES
-(1, 'MarionGautreau', 'Mexico-1985', 'marion.gautreau@yahoo.com');
-
-INSERT INTO `sujet` (`ID_SUJET`, `LIBELLE_FR`, `LIBELLE_ES`) VALUES
-(1, 'Batiment(SCOP)', 'Edificio(SCOP)'),
-(2, '19 septembre 1985', '19 de septiembre de 1985'),
-(3, '20 septembre 1985', '20 de septiembre de 1985'),
-(4, 'Sauveteurs', 'Los equipos de rescate'),
-(5, 'Vie quotidienne', 'Vida cotidiana'),
-(6, 'Bâtiments détruits', 'Edificios destruidos'),
-(7, 'Groupes de personnes', 'Grupos de personas'),
-(8, 'Personne seule', 'Persona soltera'),
-(9, 'Drapeau', 'Bandera'),
-(10, 'Fontaine', 'Fuente'),
-(11, 'Pub Mabe', 'Pub Mabe'),
-(12, 'Edifice Canada', 'Edificio de Canadá'),
-(13, 'Hotel Regis', 'Hotel Regis');
 
 INSERT INTO `paragraphe` (`ID_PRG`, `PRELUDE_FR`, `PRELUDE_ES`, `ACCUEIL_FR`, `ACCUEIL_ES` , `PROJET_FR`, `PROJET_ES`) VALUES
 (1, 'Ce site internet a pour objectif de présenter des séries de photographies réalisés au moment du tremblement de terre de Mexico en 1985. \r\nSur ce dernier, vous trouverez une carte interactive avec la géolocalisation des différentes prises de vues, une galerie avec l\'ensemble des photos regroupés par albums ou tags, des informations sur les différents photographes qui participent au projet. Enfin, un dernier onglet vous permettra de contacter directement l\'administrateur. Ce dernier vous offrira la possibilité d\'envoyer vos photos du séisme de 1985, si vous en possedez. Ces dernières pourront par la suite être intégrer à la carte et à la galerie photo.\r\nLe séisme, de magnitude 8.1 sur l\'échelle de Ritcher,a entraîné la disparation de près de 10 000 personnes. L\'état Mexicain a également comptabilisé plus de 30 000 blessés. \r\nLes pertes économiques causées par la catastrophe représentent entre 2,1 et 2,4% du produit intérieur brut (PIB) de 1985, selon les estimations d\'experts de la Commission économique pour l\'Amérique latine (CEPALC) et de l\'Université autonome de Ciudad Juárez ( UACJ).', 'Este sitio web tiene como objetivo presentar series de fotografías tomadas durante el terremoto de la Ciudad de México en 1985.\r\nEn este último, encontrará un mapa interactivo con la geolocalización de diferentes tomas, una galería con todas las fotos agrupadas por álbumes o etiquetas, información sobre los diversos fotógrafos que participan en el proyecto. Finalmente, una última pestaña le permitirá ponerse en contacto directamente con el administrador. Este último le ofrecerá la oportunidad de enviar sus fotos del terremoto de 1985, si tiene alguna. Estos pueden ser luego incorporados en el mapa y la galería de fotos.\r\nEl terremoto de magnitud 8.1 en la escala de Ritcher resultó en la desaparición de casi 10,000 personas. El estado mexicano también contó más de 30,000 heridos.\r\nLas pérdidas económicas causadas por el desastre están entre el 2,1 y el 2,4% del producto interno bruto (PIB) en 1985, de acuerdo con estimaciones de los expertos de la Comisión Económica para América Latina (CEPAL) y la Universidad.', '', '','','');

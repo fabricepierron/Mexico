@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS PARAGRAPHE
    PROJET_ES TEXT NOT NULL
    , PRIMARY KEY (ID_PRG) 
  ) 
- comment = "";
+ENGINE=InnoDB;
+ 
 
 # -----------------------------------------------------------------------------
 #       TABLE : UTILISATEUR
@@ -28,7 +29,8 @@ CREATE TABLE IF NOT EXISTS UTILISATEUR
    EMAIL_USER VARCHAR(128) NULL  
    , PRIMARY KEY (ID_USER) 
  ) 
- comment = "";
+ ENGINE=InnoDB;
+ 
 
 # -----------------------------------------------------------------------------
 #       TABLE : PHOTO
@@ -53,7 +55,8 @@ CREATE TABLE IF NOT EXISTS PHOTO
    ANGLE_VUE SMALLINT(1) NULL  
    , PRIMARY KEY (ID_PHOTO) 
  ) 
- comment = "";
+ ENGINE=InnoDB;
+ 
 
 # -----------------------------------------------------------------------------
 #       INDEX DE LA TABLE PHOTO
@@ -74,7 +77,8 @@ CREATE TABLE IF NOT EXISTS SUJET
    LIBELLE_ES VARCHAR(128) NOT NULL  
    , PRIMARY KEY (ID_SUJET) 
  ) 
- comment = "";
+ ENGINE=InnoDB;
+ 
 
 # -----------------------------------------------------------------------------
 #       TABLE : PHOTOJOURNALISTE
@@ -89,7 +93,7 @@ CREATE TABLE IF NOT EXISTS PHOTOJOURNALISTE
    DESCRIPTION_PJ_ES TEXT NOT NULL
    , PRIMARY KEY (ID_PJ) 
  ) 
- comment = "";
+ ENGINE=InnoDB;
 
 # -----------------------------------------------------------------------------
 #       TABLE : SUJETPHOTO
@@ -101,7 +105,7 @@ CREATE TABLE IF NOT EXISTS SUJETPHOTO
    ID_SUJET INTEGER(3) NOT NULL  
    , PRIMARY KEY (ID_PHOTO,ID_SUJET) 
  ) 
- comment = "";
+ ENGINE=InnoDB;
 
 # -----------------------------------------------------------------------------
 #       INDEX DE LA TABLE SUJETPHOTO
@@ -121,16 +125,16 @@ CREATE  INDEX I_FK_SUJETPHOTO_SUJET
 
 
 ALTER TABLE PHOTO 
-  ADD FOREIGN KEY FK_PHOTO_PHOTOJOURNALISTE (ID_PJ)
+  ADD CONSTRAINT FK_PHOTO_PHOTOJOURNALISTE FOREIGN KEY (ID_PJ)
       REFERENCES PHOTOJOURNALISTE (ID_PJ) ;
 
 
 ALTER TABLE SUJETPHOTO 
-  ADD FOREIGN KEY FK_SUJETPHOTO_PHOTO (ID_PHOTO)
+  ADD CONSTRAINT FK_SUJETPHOTO_PHOTO FOREIGN KEY (ID_PHOTO)
       REFERENCES PHOTO (ID_PHOTO) ;
 
 
 ALTER TABLE SUJETPHOTO 
-  ADD FOREIGN KEY FK_SUJETPHOTO_SUJET (ID_SUJET)
+  ADD CONSTRAINT FK_SUJETPHOTO_SUJET FOREIGN KEY (ID_SUJET)
       REFERENCES SUJET (ID_SUJET) ;
 
