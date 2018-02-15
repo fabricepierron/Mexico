@@ -62,8 +62,8 @@ Hola, bienvenido a nuestra plataforma.
 
 <p_accueil2>
 <fr>
-Le but de cette création est de recenser et de présenter certaines photographies de photojournalistes présent lors du tremblement de terre de 1985 à Mexico et ce, dans une vision géographique.
-Le développement de cette platforme a été effectué dans le cadre d'une colabration universitaire entre des étudiants du Master SIGMA de Toulouse et l'enseignante-chercheuse Marion Gautreau de l'UFR LLCE (Toulouse) rattachée au laboratoire FRAMESPA
+Le but de cette création est de recenser et de présenter certaines photographies de photojournalistes présents lors du tremblement de terre de 1985 à Mexico et ce, dans une vision géographique.
+Le développement de cette platforme a été effectué dans le cadre d'une colabration universitaire entre des étudiants du Master SIGMA de Toulouse et l'enseignante-chercheuse Marion Gautreau de l'UFR LLCE (Toulouse) rattachée au laboratoire FRAMESPA.
 </fr>
 <es>
 El objetivo de esta creación es encontrar y presentar algunas fotografías de fotoperiodistas presentes durante el terremoto de 1985 en México, en una visión geográfica y artística.
@@ -120,6 +120,33 @@ A partir del año 2000, el trabajo de Elsa Medina se vuelve más documental y ar
 </es>
 </p_photoj_1_3>
 
+<licence>
+<fr>Licence :</fr>
+<es>Licencia :</es>
+</licence>
 
+<description_g>
+<fr>DESCRIPTION</fr>
+<es>Descripción</es>
+</description_g>
 
+<adresse_g>
+<fr>ADRESSE</fr>
+<es>Dirección</es>
+</adresse_g>
+
+<date_g>
+<fr>DATE</fr>
+<es>Fecha</es>
+</date_g>
+
+<auteur_g>
+<fr>AUTEUR(E)</fr>
+<es>Autor(a)</es>
+</auteur_g>
+
+<pano_g>
+<fr>Vision panoramique</fr>
+<es>Visión panorámica</es>
+</pano_g>
 </root>

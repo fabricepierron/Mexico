@@ -9,7 +9,6 @@ if (session_status() == PHP_SESSION_NONE) {
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
 <meta charset="utf-8" />
-<link rel="stylesheet" type="text/css" href="css_formulaire.php" />
 </head>
 <body>
 <?php

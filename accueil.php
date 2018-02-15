@@ -9,6 +9,7 @@
 
 <body>
 <div class="arrow-right"></div> 
+
 	<a href="?lang=es"><img id="fl0" width="30" height="20" src="ico/mx.svg"></img></a>
     <a href="?lang=fr"><img id="fl" width="30" height="20" src="ico/fr.svg"></img></a>
 <center>

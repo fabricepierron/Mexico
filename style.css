@@ -104,10 +104,12 @@ border-radius: 15px;
 
 #p_al {
   text-align: justify;
+  margin-left: 5%;
+	margin-right: 5%;
 }
 p {
   transition: margin-left .5s;
-	]
+}
 
 .form-control {
 	width: 20%;
@@ -142,6 +144,7 @@ p {
 	margin-right: 5%;
 	font-size: 20px;
 }
+
 
 
 

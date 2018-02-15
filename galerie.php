@@ -1,13 +1,13 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-</head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
 
 <!-- fancybox CSS library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" />
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" type="text/css" href="style.css">
+</head>
 
 <style type="text/css">
 .gallery img {
@@ -29,9 +29,7 @@
 .gallery {
 		overflow: auto;
 }
-.hidden {
- display: none;   
-}
+
 </style>
 <center>
 <div id="main">
@@ -42,7 +40,7 @@
         include('db_config.php');
         
         //get images from database
-        $query = $db->query("SELECT * FROM photo ORDER BY DATE_PHOTO ASC;");
+        $query = $db->query("SELECT * FROM photo, photojournaliste WHERE photo.ID_PJ=photojournaliste.ID_PJ;");
 		
         
         if($query->num_rows > 0){
@@ -50,50 +48,57 @@
                 $imageThumbURL = 'thumb/'.$row['NOM_PHOTO'];
                 $imageURL = 'images/'.$row["NOM_PHOTO"];
 				$view= $row['STREET_VIEW'];
+				$adresseFr= $row['ADRESSE_FR'];
+				$adresseEs= $row['ADRESSE_ES'];
+				$date= $row['DATE_PHOTO'];
+				$angle= $row['ANGLE_VUE'];
+				$descFr= $row['DESCRIPTION_FR'];
+				$descEs= $row['DESCRIPTION_ES'];
+				$auteurP= $row['PRENOM_PJ'];
+				$auteurN= $row['NOM_PJ'];
         ?>
-            <a class ="fancybox" href="<?php echo $imageURL; ?>" data-fancybox="group" data-caption="<?php echo $row["DESCRIPTION_FR"].
-			'<br>'.$view; ?>" content="text/html";>
+            <a class ="fancybox" href="<?php echo $imageURL; ?>" data-fancybox="group" data-caption="
+			<?php if ($getlang == "fr" || $lang == "fr")
+{
+echo '<strong>DESCRIPTION :&nbsp;</strong>'.$descFr;
+}
+elseif ($getlang == "es" || $lang == "es")
+{
+echo '<strong>'.$xml->description_g->$lang.':&nbsp;</strong>'.$descEs;
+}
+				  echo '<br>';
+				  
+				  if ($getlang == "fr" || $lang == "fr")
+{
+echo '<strong>'.$xml->adresse_g->$lang.':&nbsp;</strong>'.$adresseFr;
+}
+elseif ($getlang == "es" || $lang == "es")
+{
+echo '<strong>'.$xml->adresse_g->$lang.':&nbsp;</strong>'.$adresseEs;
+} 
+				  echo '<br>';
+				  echo '<strong>'.$xml->date_g->$lang.':&nbsp;</strong>'.$date;
+				  echo '<br>';
+				  echo '<strong>'.$xml->adresse_g->$lang.':&nbsp;</strong>'.$auteurP.'&nbsp'.$auteurN;
+				  
+			?> <p><strong>StreetView :&nbsp;<a href=<?php echo $row["STREET_VIEW"].'>'.$xml->pano_g->$lang;?></a></strong></p>" content="text/html";>
             <img src="<?php echo $imageThumbURL; ?>" data-title-id="title-1" alt="" />
+
 			</a>
 			
-			<div id="title-1" class="hidden">
-			Lien G.StreetView : <a href="<?php echo $row["STREET_VIEW"]; ?>">Voir le panorama</a>
-			</div>
+			
 			
         <?php }
         } ?>
+
     </div>
 	
-	<a class="fancybox" data-title-id="title-1" href="http://fancyapps.com/fancybox/demo/1_b.jpg"><img src="http://fancyapps.com/fancybox/demo/1_s.jpg" alt=""/></a>
-	<div id="title-1" class="hidden">
-    This is 1st title. <a href="http://google.com">Some link</a>
-	</div>
-
-	<a class="fancybox" data-title-id="title-2" href="http://fancyapps.com/fancybox/demo/2_b.jpg"><img src="http://fancyapps.com/fancybox/demo/2_s.jpg" alt=""/></a>
-
-	<div id="title-2" class="hidden">
-    This is <b>2nd title</b>. <a href="http://google.com">Some link</a>
-	</div>
 	
 </div>
 </center>
 
 <script>
-$(".fancybox")
-    .attr('rel', 'gallery')
-    .fancybox({
-        beforeLoad: function() {
-            var el, id = $(this.element).data('title-id');
 
-            if (id) {
-                el = $('#' + id);
-            
-                if (el.length) {
-                    this.title = el.html();
-                }
-            }
-        }
-    });
 </script>
 
 <!-- JS library -->
